@@ -1,0 +1,455 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "@fontsource-variable/geist";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme inline {
+    --font-heading: var(--font-sans);
+    --font-sans: 'Geist Variable', sans-serif;
+    --color-sidebar-ring: var(--sidebar-ring);
+    --color-sidebar-border: var(--sidebar-border);
+    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+    --color-sidebar-accent: var(--sidebar-accent);
+    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+    --color-sidebar-primary: var(--sidebar-primary);
+    --color-sidebar-foreground: var(--sidebar-foreground);
+    --color-sidebar: var(--sidebar);
+    --color-chart-5: var(--chart-5);
+    --color-chart-4: var(--chart-4);
+    --color-chart-3: var(--chart-3);
+    --color-chart-2: var(--chart-2);
+    --color-chart-1: var(--chart-1);
+    --color-ring: var(--ring);
+    --color-input: var(--input);
+    --color-border: var(--border);
+    --color-destructive: var(--destructive);
+    --color-accent-foreground: var(--accent-foreground);
+    --color-accent: var(--accent);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-muted: var(--muted);
+    --color-secondary-foreground: var(--secondary-foreground);
+    --color-secondary: var(--secondary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-primary: var(--primary);
+    --color-popover-foreground: var(--popover-foreground);
+    --color-popover: var(--popover);
+    --color-card-foreground: var(--card-foreground);
+    --color-card: var(--card);
+    --color-foreground: var(--foreground);
+    --color-background: var(--background);
+
+    /* Palet resmi SETARA */
+    --color-brand: var(--brand);
+    --color-brand-foreground: var(--brand-foreground);
+    --color-brand-soft: var(--brand-soft);
+    --color-brand-soft-foreground: var(--brand-soft-foreground);
+    --color-brand-border: var(--brand-border);
+    --color-accent-warm: var(--accent-warm);
+    --color-accent-warm-soft: var(--accent-warm-soft);
+    --color-accent-warm-border: var(--accent-warm-border);
+    --color-success: var(--success);
+    --color-success-soft: var(--success-soft);
+    --color-success-border: var(--success-border);
+
+    /* Aksen Royal khusus kartu metrik Dashboard */
+    --color-royal: var(--royal);
+    --color-royal-soft: var(--royal-soft);
+    --color-royal-border: var(--royal-border);
+    --color-royal-ink: var(--royal-ink);
+
+    --radius-sm: calc(var(--radius) * 0.6);
+    --radius-md: calc(var(--radius) * 0.8);
+    --radius-lg: var(--radius);
+    --radius-xl: calc(var(--radius) * 1.4);
+    --radius-2xl: calc(var(--radius) * 1.8);
+    --radius-3xl: calc(var(--radius) * 2.2);
+    --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+:root {
+    /* Permukaan */
+    --background: oklch(0.967 0.003 286); /* #F4F4F6 */
+    --foreground: oklch(0.21 0.006 286); /* #18181B */
+    --card: oklch(1 0 0);
+    --card-foreground: oklch(0.21 0.006 286);
+    --popover: oklch(1 0 0);
+    --popover-foreground: oklch(0.21 0.006 286);
+
+    /* Ungu akademik sebagai warna utama */
+    --primary: oklch(0.555 0.222 280); /* #6D5DF6 */
+    --primary-foreground: oklch(1 0 0);
+    --secondary: oklch(0.965 0.018 285);
+    --secondary-foreground: oklch(0.42 0.18 280);
+    --muted: oklch(0.965 0.008 286);
+    --muted-foreground: oklch(0.556 0.012 286);
+    --accent: oklch(0.97 0.012 80);
+    --accent-foreground: oklch(0.35 0.1 70);
+    --destructive: oklch(0.586 0.253 17.585); /* rose-600 */
+    --border: oklch(0.922 0.004 286);
+    --input: oklch(0.922 0.004 286);
+    --ring: oklch(0.555 0.222 280);
+
+    /* Grafik: mengikuti palet resmi */
+    --chart-1: oklch(0.555 0.222 280); /* ungu */
+    --chart-2: oklch(0.768 0.164 70.08); /* oranye */
+    --chart-3: oklch(0.696 0.17 162.48); /* hijau */
+    --chart-4: oklch(0.62 0.19 250); /* biru */
+    --chart-5: oklch(0.829 0.154 84.2); /* amber */
+    --radius: 0.625rem;
+
+    /* Sidebar */
+    --sidebar: oklch(0.99 0.002 286);
+    --sidebar-foreground: oklch(0.21 0.006 286);
+    --sidebar-primary: oklch(0.555 0.222 280);
+    --sidebar-primary-foreground: oklch(1 0 0);
+    --sidebar-accent: oklch(0.965 0.018 285);
+    --sidebar-accent-foreground: oklch(0.42 0.18 280);
+    --sidebar-border: oklch(0.922 0.004 286);
+    --sidebar-ring: oklch(0.555 0.222 280);
+
+    /* Token palet turunan */
+    --brand: oklch(0.555 0.222 280);
+    --brand-foreground: oklch(1 0 0);
+    --brand-soft: oklch(0.965 0.026 285);
+    --brand-soft-foreground: oklch(0.45 0.19 280);
+    --brand-border: oklch(0.91 0.045 285);
+    --accent-warm: oklch(0.768 0.164 70.08);
+    --accent-warm-soft: oklch(0.975 0.038 80);
+    --accent-warm-border: oklch(0.915 0.05 75);
+    --success: oklch(0.696 0.17 162.48);
+    --success-soft: oklch(0.965 0.035 160);
+    --success-border: oklch(0.915 0.045 160);
+
+    /* Royal — dipakai kartu progres, tugas aktif, dan agenda */
+    --royal: oklch(0.545 0.238 264); /* #2F5BFF */
+    --royal-soft: oklch(0.955 0.018 260); /* #EEF3FF */
+    --royal-border: oklch(0.92 0.03 260); /* #DBE5FF */
+    --royal-ink: oklch(0.29 0.11 264); /* #0B1A5C */
+}
+
+.dark {
+    --background: oklch(0.141 0.005 285.823); /* #09090B */
+    --foreground: oklch(0.985 0 0);
+    --card: oklch(0.21 0.006 285.885); /* #18181B */
+    --card-foreground: oklch(0.985 0 0);
+    --popover: oklch(0.21 0.006 285.885);
+    --popover-foreground: oklch(0.985 0 0);
+    --primary: oklch(0.68 0.17 282); /* ungu lebih terang */
+    --primary-foreground: oklch(0.18 0.01 285);
+    --secondary: oklch(0.29 0.05 283);
+    --secondary-foreground: oklch(0.96 0.02 285);
+    --muted: oklch(0.27 0.008 286);
+    --muted-foreground: oklch(0.72 0.012 286);
+    --accent: oklch(0.3 0.045 75);
+    --accent-foreground: oklch(0.98 0.02 85);
+    --destructive: oklch(0.712 0.194 13.428); /* rose-400 */
+    --border: oklch(1 0 0 / 10%);
+    --input: oklch(1 0 0 / 15%);
+    --ring: oklch(0.68 0.17 282);
+    --chart-1: oklch(0.72 0.16 282);
+    --chart-2: oklch(0.829 0.154 84.2);
+    --chart-3: oklch(0.792 0.209 151.711);
+    --chart-4: oklch(0.7 0.16 250);
+    --chart-5: oklch(0.85 0.14 95);
+    --sidebar: oklch(0.21 0.006 285.885);
+    --sidebar-foreground: oklch(0.985 0 0);
+    --sidebar-primary: oklch(0.68 0.17 282);
+    --sidebar-primary-foreground: oklch(0.18 0.01 285);
+    --sidebar-accent: oklch(0.29 0.05 283);
+    --sidebar-accent-foreground: oklch(0.96 0.02 285);
+    --sidebar-border: oklch(1 0 0 / 10%);
+    --sidebar-ring: oklch(0.68 0.17 282);
+
+    --brand: oklch(0.68 0.17 282);
+    --brand-foreground: oklch(0.18 0.01 285);
+    --brand-soft: oklch(0.32 0.09 283);
+    --brand-soft-foreground: oklch(0.92 0.05 285);
+    --brand-border: oklch(0.46 0.11 283);
+    --accent-warm: oklch(0.829 0.154 84.2);
+    --accent-warm-soft: oklch(0.33 0.08 70);
+    --accent-warm-border: oklch(0.48 0.1 70);
+    --success: oklch(0.792 0.209 151.711);
+    --success-soft: oklch(0.32 0.08 160);
+    --success-border: oklch(0.47 0.1 160);
+
+    --royal: oklch(0.66 0.22 264); /* Royal lebih terang */
+    --royal-soft: oklch(0.3 0.09 264); /* Navy lembut */
+    --royal-border: oklch(0.45 0.13 264);
+    --royal-ink: oklch(0.88 0.04 260); /* #DBE5FF */
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+    }
+  html {
+    @apply font-sans antialiased;
+    }
+  body {
+    @apply bg-background text-foreground;
+    }
+  ::selection {
+    background-color: var(--brand-soft);
+    color: var(--brand-soft-foreground);
+  }
+  .dark ::selection {
+    background-color: var(--brand-soft);
+    color: var(--brand-soft-foreground);
+  }
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #d4d4d8 transparent;
+  }
+  *::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  *::-webkit-scrollbar-thumb {
+    background-color: #e4e4e7;
+    border-radius: 9999px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+  }
+  *::-webkit-scrollbar-thumb:hover {
+    background-color: #d4d4d8;
+  }
+
+  /* Palet resmi SETARA: aksen pastel memakai token yang sama di light & dark. */
+  .bg-purple-50,
+  .bg-purple-50\/70,
+  .bg-violet-50 {
+    background-color: var(--brand-soft) !important;
+  }
+  .bg-purple-100\/60 {
+    background-color: color-mix(in oklch, var(--brand) 22%, transparent) !important;
+  }
+  .border-purple-100,
+  .border-purple-100\/70,
+  .border-violet-100\/80 {
+    border-color: var(--brand-border) !important;
+  }
+  .text-purple-600,
+  .text-purple-700 {
+    color: var(--brand) !important;
+  }
+  .bg-orange-50,
+  .bg-orange-50\/70,
+  .bg-amber-50,
+  .bg-amber-50\/60,
+  .bg-amber-50\/70 {
+    background-color: var(--accent-warm-soft) !important;
+  }
+  .bg-orange-100\/50 {
+    background-color: color-mix(in oklch, var(--accent-warm) 20%, transparent) !important;
+  }
+  .border-orange-100,
+  .border-orange-100\/70,
+  .border-amber-100,
+  .border-amber-100\/70,
+  .border-amber-100\/80 {
+    border-color: var(--accent-warm-border) !important;
+  }
+  .text-orange-600,
+  .text-orange-700,
+  .text-amber-600,
+  .text-amber-700,
+  .text-amber-800 {
+    color: var(--accent-warm) !important;
+  }
+  .bg-emerald-50,
+  .bg-emerald-50\/70 {
+    background-color: var(--success-soft) !important;
+  }
+  .border-emerald-100,
+  .border-emerald-100\/70 {
+    border-color: var(--success-border) !important;
+  }
+  .text-emerald-600,
+  .text-emerald-700 {
+    color: var(--success) !important;
+  }
+
+  /* Palet gelap: menyesuaikan seluruh permukaan, teks, dan kartu pastel */
+  .dark {
+    color-scheme: dark;
+  }
+  .dark * {
+    scrollbar-color: #3f3f46 transparent !important;
+  }
+  .dark *::-webkit-scrollbar-thumb {
+    background-color: #3f3f46 !important;
+  }
+  .dark *::-webkit-scrollbar-thumb:hover {
+    background-color: #52525b !important;
+  }
+  .dark .bg-white {
+    background-color: #18181b !important;
+  }
+  .dark .bg-zinc-50,
+  .dark .bg-zinc-100 {
+    background-color: #27272a !important;
+  }
+  .dark .bg-zinc-200 {
+    background-color: #3f3f46 !important;
+  }
+  .dark .border-zinc-100,
+  .dark .border-zinc-200,
+  .dark .border-zinc-200\/70,
+  .dark .border-zinc-200\/80,
+  .dark .border-zinc-300 {
+    border-color: #3f3f46 !important;
+  }
+  .dark .text-zinc-900,
+  .dark .text-zinc-800 {
+    color: #f4f4f5 !important;
+  }
+  .dark .text-zinc-700 {
+    color: #e4e4e7 !important;
+  }
+  .dark .text-zinc-600,
+  .dark .text-zinc-500,
+  .dark .text-zinc-400 {
+    color: #a1a1aa !important;
+  }
+  .dark .bg-zinc-900 {
+    background-color: #f4f4f5 !important;
+  }
+  .dark .text-white {
+    color: #18181b !important;
+  }
+  .dark .bg-purple-50,
+  .dark .bg-purple-50\/70,
+  .dark .bg-violet-50 {
+    background-color: var(--brand-soft) !important;
+  }
+  .dark .bg-orange-50,
+  .dark .bg-orange-50\/70,
+  .dark .bg-amber-50,
+  .dark .bg-amber-50\/70,
+  .dark .bg-amber-50\/60 {
+    background-color: var(--accent-warm-soft) !important;
+  }
+  .dark .bg-emerald-50,
+  .dark .bg-emerald-50\/70 {
+    background-color: var(--success-soft) !important;
+  }
+  .dark .border-purple-100,
+  .dark .border-purple-100\/70,
+  .dark .border-violet-100\/80 {
+    border-color: var(--brand-border) !important;
+  }
+  .dark .border-orange-100,
+  .dark .border-orange-100\/70,
+  .dark .border-amber-100,
+  .dark .border-amber-100\/70,
+  .dark .border-amber-100\/80 {
+    border-color: var(--accent-warm-border) !important;
+  }
+  .dark .border-emerald-100,
+  .dark .border-emerald-100\/70 {
+    border-color: var(--success-border) !important;
+  }
+  .dark .text-purple-950,
+  .dark .text-orange-950,
+  .dark .text-emerald-950,
+  .dark .text-amber-900,
+  .dark .text-purple-900\/70,
+  .dark .text-orange-900\/70,
+  .dark .text-emerald-900\/70 {
+    color: #f4f4f5 !important;
+  }
+  .dark .text-purple-600,
+  .dark .text-purple-700 {
+    color: var(--brand-soft-foreground) !important;
+  }
+  .dark .text-orange-600,
+  .dark .text-orange-700,
+  .dark .text-amber-600,
+  .dark .text-amber-700,
+  .dark .text-amber-800 {
+    color: var(--accent-warm) !important;
+  }
+  .dark .text-emerald-600,
+  .dark .text-emerald-700 {
+    color: var(--success) !important;
+  }
+  .dark .text-rose-500,
+  .dark .text-rose-600,
+  .dark .text-rose-700 {
+    color: var(--destructive) !important;
+  }
+  .dark .text-indigo-600,
+  .dark .text-indigo-700 {
+    color: var(--brand-soft-foreground) !important;
+  }
+  .dark .bg-rose-50,
+  .dark .bg-rose-50\/70 {
+    background-color: color-mix(in oklch, var(--destructive) 18%, transparent) !important;
+  }
+  .dark .border-rose-100,
+  .dark .border-rose-100\/70 {
+    border-color: color-mix(in oklch, var(--destructive) 30%, transparent) !important;
+  }
+  .dark .bg-indigo-50 {
+    background-color: var(--brand-soft) !important;
+  }
+  .dark .ring-zinc-200,
+  .dark .ring-zinc-200\/60,
+  .dark .ring-zinc-200\/80 {
+    --tw-ring-color: #3f3f46 !important;
+  }
+  .dark .ring-purple-100,
+  .dark .ring-orange-100,
+  .dark .ring-emerald-100,
+  .dark .ring-amber-100 {
+    --tw-ring-color: rgba(161, 161, 170, 0.25) !important;
+  }
+  .dark .bg-zinc-50\/30,
+  .dark .bg-zinc-50\/40,
+  .dark .bg-zinc-50\/50,
+  .dark .bg-zinc-50\/60,
+  .dark .bg-zinc-50\/70,
+  .dark .bg-zinc-100\/80 {
+    background-color: rgba(39, 39, 42, 0.75) !important;
+  }
+  .dark .bg-white\/60,
+  .dark .bg-white\/70,
+  .dark .bg-white\/80 {
+    background-color: rgba(39, 39, 42, 0.7) !important;
+  }
+  .dark .bg-zinc-200\/60,
+  .dark .bg-zinc-200\/70,
+  .dark .bg-zinc-200\/80 {
+    background-color: #3f3f46 !important;
+    border-color: #3f3f46 !important;
+  }
+  .dark .divide-zinc-100 > :not([hidden]) ~ :not([hidden]),
+  .dark .divide-zinc-200 > :not([hidden]) ~ :not([hidden]) {
+    border-color: #3f3f46 !important;
+  }
+}
+
+@media print {
+  @page {
+    margin: 12mm;
+  }
+
+  html,
+  body {
+    background: #ffffff;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  main {
+    overflow: visible !important;
+  }
+
+  [data-slot="table-container"] {
+    overflow: visible !important;
+  }
+}

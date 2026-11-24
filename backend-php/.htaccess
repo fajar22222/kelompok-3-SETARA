@@ -1,0 +1,8 @@
+# Saat folder ini dijadikan DocumentRoot Laragon (C:\laragon\www\setara-api),
+# arahkan semua permintaan ke front controller di public/.
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    RewriteRule ^$ public/ [L]
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
