@@ -44,6 +44,7 @@ import {
   readLocalSession,
   rememberedName,
   rememberedUsers,
+  rememberUser,
   saveLocalSession,
 } from "@/lib/session"
 import {
@@ -118,7 +119,7 @@ interface AppContextValue extends AppData {
   authError: string | null
   isAuthenticated: boolean
   signIn: (email: string, password: string, name?: string) => Promise<void>
-  signUp: (name: string, email: string, password: string) => Promise<void>
+  signUp: (name: string, email: string, password: string, prodi: string) => Promise<void>
   signOut: () => void
   refreshSession: () => void
   updateTask: (taskId: string, patch: Partial<Task>) => void
@@ -328,38 +329,41 @@ export function AppProvider({ children }: { children: ReactNode }) {
    * dan nama profil diperbarui, lalu pengguna langsung masuk.
    */
   const signUp = useCallback(
-    async (name: string, email: string, password: string) => {
+    async (name: string, email: string, password: string, prodi: string) => {
       const displayName = name.trim()
       const identifier = email.trim().toLowerCase()
+      const program = prodi.trim()
       if (!displayName) throw new ApiError("Nama lengkap wajib diisi.")
-      if (!identifier) throw new ApiError("Email atau NIM wajib diisi.")
+      if (!identifier) throw new ApiError("Email wajib diisi.")
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(identifier)) {
+        throw new ApiError("Format email tidak valid.")
+      }
+      if (!program) throw new ApiError("Program studi wajib dipilih.")
       if (!password) throw new ApiError("Kata sandi wajib diisi.")
 
       try {
-        const auth = await apiRegister(displayName, identifier, password)
-        await adoptRemoteSession(auth)
-        return
+        // Registrasi hanya membuat akun; pengguna masih harus masuk.
+        await apiRegister(displayName, identifier, password, program)
       } catch (caught) {
         if (!isServerUnavailable(caught)) throw caught
       }
 
+      // Cache lokal ikut disiapkan, tetapi sesi login tidak dibuat.
       const stored = loadAccountData(identifier)
       const profile: Profile = stored
-        ? { ...stored.profile, name: displayName, email: identifier }
-        : profileFor(identifier, displayName)
+        ? { ...stored.profile, name: displayName, email: identifier, prodi: program }
+        : { ...profileFor(identifier, displayName), prodi: program }
       const next = stored ? { ...stored, profile } : createSeedData(profile)
 
       saveAccountData(identifier, next)
-      saveLocalSession({
+      rememberUser({
         id: localUserId(identifier),
         name: displayName,
         email: identifier,
       })
-      setData(next)
-      setAuthStatus("ready")
       setAuthError(null)
     },
-    [adoptRemoteSession],
+    [],
   )
 
   const signOut = useCallback(() => {

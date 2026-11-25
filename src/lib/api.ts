@@ -27,6 +27,11 @@ export interface RemoteUser {
   email: string
 }
 
+export interface RegisterPayload {
+  user: RemoteUser
+  profile: Profile
+}
+
 export interface AuthPayload {
   token: string
   user: RemoteUser
@@ -122,8 +127,8 @@ export function apiLogin(email: string, password: string, name?: string) {
   return request<AuthPayload>("/api/auth/login", json({ email, password, name }))
 }
 
-export function apiRegister(name: string, email: string, password: string) {
-  return request<AuthPayload>("/api/auth/register", json({ name, email, password }))
+export function apiRegister(name: string, email: string, password: string, prodi: string) {
+  return request<RegisterPayload>("/api/auth/register", json({ name, email, password, prodi }))
 }
 
 export function apiLogout() {

@@ -19,6 +19,9 @@ backend/**/__pycache__
 backend/instance
 backend/.env
 
+# Paket distribusi tim (dikelola terpisah, bukan source code GitHub)
+Distribusi_Tim_SETARA/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

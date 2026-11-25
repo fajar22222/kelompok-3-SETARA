@@ -1,5 +1,10 @@
 # SETARA
 
+> **Catatan distribusi:** branch `main` saat ini berisi **kerangka** — 9 halaman
+> di `src/pages/*.tsx` sengaja berupa placeholder dan `backend-php/` tidak
+> disertakan. Implementasi lengkap ada di 5 file zip dalam
+> `Distribusi_Tim_SETARA/` (folder tersebut masuk `.gitignore`).
+
 **Sistem Tugas dan Agenda Rencana Akademik** — aplikasi web untuk mengelola
 tugas kuliah, subtugas, jadwal kelas, agenda kalender, pengingat, progres, dan
 profil mahasiswa.
@@ -11,8 +16,8 @@ tidak berjalan.
 
 ## Fitur
 
-- Autentikasi lokal: registrasi, login, dan logout. Email/NIM + kata sandi apa
-  pun yang tidak kosong diterima; akun baru dibuat otomatis.
+- Autentikasi: registrasi (nama, email, program studi, kata sandi), login dengan
+  verifikasi kata sandi, dan logout. Akun baru tersimpan di database.
 - Dashboard ringkasan: progres semester, tugas aktif, agenda hari ini, jadwal,
   pengingat, dan tugas prioritas.
 - Tugas: tambah, ubah, hapus + undo, checklist subtugas, catatan, filter, dan
@@ -106,14 +111,16 @@ npm run preview    # pratinjau hasil build
 | Email | Kata sandi |
 | --- | --- |
 | `aditya.pratama@kampus.ac.id` | `setara123` |
+| `pengguna.google@gmail.com` | `google` |
 
-Mode demo menerima **email/NIM dan kata sandi apa pun yang tidak kosong**. Jika
-kredensial belum pernah dipakai, akun baru dibuat otomatis dengan data contoh
-(30 tugas, 13 jadwal, 3 agenda, 7 pengingat). Akun baru juga bisa dibuat lewat
-halaman **Daftar akun**.
+Login memverifikasi email dan kata sandi yang tersimpan (hash bcrypt). Jika
+kata sandi salah atau email belum terdaftar, sistem menampilkan pesan gagal.
+Registrasi meminta nama, email, program studi, dan kata sandi; email yang sudah
+terdaftar ditolak. Setelah berhasil daftar, pengguna diarahkan ke halaman masuk.
 
-Tombol **Isi kredensial demo**, **Akun kampus**, dan **Google** langsung masuk
-ke dashboard.
+Tombol **Akun kampus** dan **Google** memakai akun demo di atas, sehingga tetap
+langsung masuk ke dashboard. Kredensial demo juga tetap bisa diketik manual,
+tetapi panel pengingatnya tidak ditampilkan di halaman masuk.
 
 ## Penyimpanan
 
